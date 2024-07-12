@@ -1,0 +1,211 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Budgie Hub 1.0",
+    SubTitle = "By Budgie Team",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(480, 360),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Characters", Icon = "" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+Tabs.Main:AddParagraph({
+        Title = "Saitama",
+        Content = ""
+    })
+    
+    Tabs.Main:AddParagraph({
+        Title = "Garou",
+        Content = ""
+    })
+    
+    Tabs.Main:AddParagraph({
+        Title = "Genos",
+        Content = ""
+    })
+    
+    Tabs.Main:AddParagraph({
+        Title = "Metal Bat",
+        Content = ""
+    })
+    
+    Tabs.Main:AddParagraph({
+        Title = "Atomic Samurai",
+        Content = ""
+    })
+    
+    Tabs.Main:AddButton({
+        Title = "Tool Void",
+        Description = "Very important",
+        Callback = function()
+local tool = Instance.new("Tool")
+tool.Name = "Tool Void Atomic Samurai"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+user = game.Players.LocalPlayer
+local currentPosition = user.Character.HumanoidRootPart.CFrame
+local ohTable1 = {
+ ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Atmos Cleave"],
+ ["Goal"] = "Console Move"
+}
+
+workspace.Live[user.Name].Communicate:FireServer(ohTable1)
+  wait(1)
+user.Character.HumanoidRootPart.CFrame = CFrame.new(718, -345, -9997)
+part = Instance.new("Part")
+part.Name = "AntiFallPart"
+part.Size = Vector3.new(50000, 1, 50000)
+part.Transparency = 0.7
+part.Anchored = true
+part.Position = Vector3.new(718, -355, -9997)
+part.Parent = game.Workspace
+        wait(2)
+        user.Character.HumanoidRootPart.CFrame = currentPosition
+ part:Destroy()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+       end
+})
+    
+    Tabs.Main:AddParagraph({
+        Title = "Tatsumaki",
+        Content = ""
+    })
+    
+    Tabs.Main:AddButton({
+        Title = "Void random",
+        Description = "Teleports a player or humanoid into the void",
+        Callback = function()
+local user = game.Players.LocalPlayer
+
+local function getFirstHumanoid()
+    local humanoids = workspace:GetDescendants()
+    for _, humanoid in ipairs(humanoids) do
+        if humanoid:IsA("Humanoid") and humanoid.Parent ~= user.Character then
+            return humanoid.Parent
+        end
+    end
+    return nil
+end
+
+local function activateCrushingPull()
+    local firstHumanoid = getFirstHumanoid()
+    if firstHumanoid then
+       local currentPosition = user.Character.HumanoidRootPart.CFrame
+   task.wait(0.01) user.Character.HumanoidRootPart.CFrame = firstHumanoid.PrimaryPart.CFrame + Vector3.new(0,0,-5)
+        wait(0.26)
+        
+        local ohTable1 = {
+            ["CrushingPull"] = firstHumanoid,
+            ["Goal"] = "Console Move",
+            ["Tool"] = user.Backpack["Crushing Pull"]
+        }
+        
+        workspace.Live[user.Name].Communicate:FireServer(ohTable1)
+        
+        wait(0.26) user.Character.HumanoidRootPart.CFrame = CFrame.new(718, 100, -9997)
+        wait(2)
+        user.Character.HumanoidRootPart.CFrame = currentPosition
+    else
+        print("No humanoid found in the workspace.")
+    end
+end
+
+activateCrushingPull()
+       end
+})
+
+Tabs.Main:AddButton({
+        Title = "Bring random",
+        Description = "Teleports a player or humanoid to you",
+        Callback = function()
+local user = game.Players.LocalPlayer
+
+local function getFirstHumanoid()
+    local humanoids = workspace:GetDescendants()
+    for _, humanoid in ipairs(humanoids) do
+        if humanoid:IsA("Humanoid") and humanoid.Parent ~= user.Character then
+            return humanoid.Parent
+        end
+    end
+    return nil
+end
+
+local function activateCrushingPull()
+    local firstHumanoid = getFirstHumanoid()
+    if firstHumanoid then
+       local currentPosition = user.Character.HumanoidRootPart.CFrame
+   task.wait(0.01) user.Character.HumanoidRootPart.CFrame = firstHumanoid.PrimaryPart.CFrame + Vector3.new(0,0,-5)
+        wait(0.26)
+        
+        local ohTable1 = {
+            ["CrushingPull"] = firstHumanoid,
+            ["Goal"] = "Console Move",
+            ["Tool"] = user.Backpack["Crushing Pull"]
+        }
+        
+        workspace.Live[user.Name].Communicate:FireServer(ohTable1)
+        
+        wait(0.26)
+        user.Character.HumanoidRootPart.CFrame = currentPosition
+    else
+        print("No humanoid found in the workspace.")
+    end
+end
+
+activateCrushingPull()
+       end
+})
+
+Tabs.Main:AddButton({
+        Title = "Tool Void",
+        Description = "For comfort",
+        Callback = function()
+        local tool = Instance.new("Tool")
+tool.Name = "Tool Void Tatsumaki"
+tool.RequiresHandle = false
+
+user = game.Players.LocalPlayer
+tool.Activated:Connect(function()
+local function getFirstHumanoid()
+    local humanoids = workspace:GetDescendants()
+    for _, humanoid in ipairs(humanoids) do
+        if humanoid:IsA("Humanoid") and humanoid.Parent ~= user.Character then
+            return humanoid.Parent
+        end
+    end
+    return nil
+end
+
+local function activateCrushingPull()
+    local firstHumanoid = getFirstHumanoid()
+local currentPosition = user.Character.HumanoidRootPart.CFrame
+local ohTable1 = {
+            ["CrushingPull"] = firstHumanoid,
+            ["Goal"] = "Console Move",
+            ["Tool"] = user.Backpack["Crushing Pull"]
+        }
+        
+        workspace.Live[user.Name].Communicate:FireServer(ohTable1)
+     wait(0.26)
+   user.Character.HumanoidRootPart.CFrame = CFrame.new(718, 800, -9997)
+        wait(2)
+        user.Character.HumanoidRootPart.CFrame = currentPosition
+   end
+   
+   activateCrushingPull()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+       end
+})
