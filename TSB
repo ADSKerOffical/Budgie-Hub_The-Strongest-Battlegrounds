@@ -26,6 +26,43 @@ Tabs.Main:AddParagraph({
         Title = "Garou",
         Content = ""
     })
+
+Tabs.Main:AddButton({
+        Title = "Tool Void",
+        Description = "Destroys the player if you grab him",
+        Callback = function()
+local tool = Instance.new("Tool")
+tool.Name = "Tool Void Garou"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+user = game.Players.LocalPlayer
+local currentPosition = user.Character.HumanoidRootPart.CFrame
+local args = {
+    [1] = {
+        ["Goal"] = "Console Move",
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Lethal Whirlwind Stream"]
+    }
+}
+
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+  wait(0.5)
+part = Instance.new("Part")
+part.Name = "AntiFallPart"
+part.Size = Vector3.new(50000, 1, 50000)
+part.Transparency = 0.7
+part.Anchored = true
+part.Position = Vector3.new(718, -490, -9997)
+part.Parent = game.Workspace
+user.Character.HumanoidRootPart.CFrame = CFrame.new(718, -480, -9997)
+        wait(2.5)
+        user.Character.HumanoidRootPart.CFrame = currentPosition
+ part:Destroy()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+       end
+})
     
     Tabs.Main:AddParagraph({
         Title = "Genos",
@@ -36,6 +73,45 @@ Tabs.Main:AddParagraph({
         Title = "Metal Bat",
         Content = ""
     })
+
+Tabs.Main:AddButton({
+        Title = "Long Beatdown(tool)",
+        Description = "Beatdown will be much longer",
+        Callback = function()
+local tool = Instance.new("Tool")
+tool.Name = "Long Beatdown"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+local function smoothlyMovePlayer()
+    local newPosition = humanoidRootPart.CFrame * CFrame.new(0, 0, -75)
+    local tween = game:GetService("TweenService"):Create(
+        humanoidRootPart,
+        TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {CFrame = newPosition}
+    )
+    tween:Play()
+local args = {
+    [1] = {
+        ["Goal"] = "Console Move",
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Beatdown"]
+    }
+}
+
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack(args))
+    tween.Completed:Wait()
+end
+
+smoothlyMovePlayer()
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+       end
+})
     
     Tabs.Main:AddParagraph({
         Title = "Atomic Samurai",
