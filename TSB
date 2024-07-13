@@ -285,3 +285,53 @@ end)
 tool.Parent = game.Players.LocalPlayer.Backpack
        end
 })
+
+Tabs.Settings:AddButton({
+        Title = "Reset",
+        Description = "Very important button",
+        Callback = function()
+game.Players.LocalPlayer.Character.Humanoid:TakeDamage(game.Players.LocalPlayer.Character.Humanoid.MaxHealth)
+       end
+})
+
+Tabs.Settings:AddButton({
+        Title = "Reset v2",
+        Description = "Very important button",
+        Callback = function()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-74.8859, -400, 105.9)
+       end
+})
+
+Tabs.Settings:AddButton({
+        Title = "Tool of surprise",
+        Description = "Very important tool",
+        Callback = function()
+local tool = Instance.new("Tool")
+tool.Name = "Tool of suprise"
+tool.RequiresHandle = false
+
+tool.Activated:Connect(function()
+local closestDistance = math.huge
+      local closestPlayer = nil
+ Usuario = game.Players.LocalPlayer
+
+      for i,v in next, game:GetService("Players"):GetPlayers() do
+       if (v ~= Usuario and Usuario.Character and Usuario.Character:FindFirstChild("HumanoidRootPart") and v.Character and v.Character:FindFirstChild("HumanoidRootPart")) then
+        local distance = (v.Character.HumanoidRootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+ 
+        if (distance < closestDistance and distance <= 50) then
+         closestDistance = distance
+         closestPlayer = v
+        end
+       end
+      end
+ 
+      if closestPlayer then
+       local playerPosition = closestPlayer.Character.HumanoidRootPart
+     Usuario.Character.HumanoidRootPart.CFrame = playerPosition.CFrame * CFrame.new(0, 0, 3)
+      end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+       end
+})
